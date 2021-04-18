@@ -1,0 +1,13 @@
+,!~0(#if 1st input is not 0#
+    >,
+    !~0(#if second input is not 0#
+        <[->>+>+<<<]#moves 1st cell's value to 3rd and 4th cell#
+        >[->#opens loop and subtracts 1 from 2nd cell#
+        [-<<+>>]#adds value of 3rd cell to 1st cell#
+        >[->+<]#moves value of 4th cell to 5th cell#
+        >[-<+<+>>]#copies value of 5th cell to 3rd and 4th cells#
+          <<<]#moves back to 2nd cell for repeat loop#
+    )
+)
+<#move to first cell#
+:#output result as an integer#

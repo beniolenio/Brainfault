@@ -1,0 +1,7 @@
+# This is a first program #
+$sub_to_zero{!~0(-*sub_to_zero*)} # program to add ten to current cell #
++++++
+*sub_to_zero*
+[+++++]# should not execute this because the sub_to_zero subroutine
+has made the cell value equal to 0 #
+:#should output 0#
