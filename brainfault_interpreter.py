@@ -15,9 +15,8 @@ def brainfault_interpreter(code, input_=[]):
     
     curr_call = bf
     
-    while i < len(curr_call.code):
+    while i < len(bf.code):
         cmd = curr_call.code[i]
-        
         if cmd == '+':
             cells[pointer] += 1
         elif cmd == '-':
@@ -43,6 +42,10 @@ def brainfault_interpreter(code, input_=[]):
             i = curr_call.jump_to[i]
         elif cmd == ']' and cells[pointer] != 0:
             i = curr_call.jump_to[i]
+        elif cmd == '/' and input_.size == 0:
+            i = curr_call.jump_to[i]
+        elif cmd == '|' and input_.size != 0:
+            i = curr_call.jump_to[i]
         elif cmd == '!':
             not_ = False
             num, i = curr_call.substr(i + 1, '(')
@@ -61,7 +64,7 @@ def brainfault_interpreter(code, input_=[]):
         cells[pointer] %= 256
         i += 1
         
-        if i == len(curr_call.code) and not call_stack.isEmpty():
+        while i == len(curr_call.code) and not call_stack.isEmpty():
             curr_call, i = call_stack.pop()
     
     return output

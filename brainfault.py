@@ -18,14 +18,15 @@ class Brainfault:
         self.code = clean_code
         
         self.jump_to = {}
-        if_while_stack = Stack()
+        loop_stack = Stack()
+        match = {']': '[', ')': '(', '|': '/'}
         for i, c in enumerate(self.code):
-            if c == '[' or c == '(':
-                if_while_stack.push((i, c))
-            elif c == ']' or c == ')':
-                back_to, last_c = if_while_stack.pop()
-                if c == ']' and last_c == '(' or c == ')' and last_c == '[':
-                    raise RuntimeError("Non-matching brackets")
+            if c in ("(", "[", "/"):
+                loop_stack.push((i, c))
+            elif c in (")", "]", "|"):
+                back_to, last_c = loop_stack.pop()
+                if last_c != match[c]:
+                    raise RuntimeError("Non-matching loop characters")
                 self.jump_to[i] = back_to
                 self.jump_to[back_to] = i
     
@@ -40,14 +41,15 @@ class Subroutine:
     def __init__(self, code):
         self.code = code
         self.jump_to = {}
-        if_while_stack = Stack()
+        loop_stack = Stack()
+        match = {']': '[', ')': '(', '|': '/'}
         for i, c in enumerate(self.code):
-            if c == '[' or c == '(':
-                if_while_stack.push((i, c))
-            elif c == ']' or c == ')':
-                back_to, last_c = if_while_stack.pop()
-                if c == ']' and last_c == '(' or c == ')' and last_c == '[':
-                    raise RuntimeError("Non-matching brackets")
+            if c in ("(", "[", "/"):
+                loop_stack.push((i, c))
+            elif c in (")", "]", "|"):
+                back_to, last_c = loop_stack.pop()
+                if last_c != match[c]:
+                    raise RuntimeError("Non-matching loop characters")
                 self.jump_to[i] = back_to
                 self.jump_to[back_to] = i
     

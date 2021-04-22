@@ -8,6 +8,8 @@
 > = increment the pointer
 [ = jump past the matching ']' if the cell at the pointer is 0
 ] = jump back to the matching '[' if the cell at the pointer is nonzero
+/ = jump past the matching '|' if the length of the input queue is 0
+| = jump back to the matching '/' if the length of the input queue is nonzero 
 !int(instructions) = if current cell is not int, then skip to matching ')'
 !~int(instructions) = if current cell is int, then skip to matching ')'
 $func_name{instructions} = subroutine named func_name
