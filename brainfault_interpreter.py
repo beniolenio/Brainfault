@@ -15,7 +15,7 @@ def brainfault_interpreter(code, input_=[]):
     
     curr_call = bf
     
-    while i < len(bf.code):
+    while i < len(curr_call.code):
         cmd = curr_call.code[i]
         if cmd == '+':
             cells[pointer] += 1
@@ -66,5 +66,4 @@ def brainfault_interpreter(code, input_=[]):
         
         while i == len(curr_call.code) and not call_stack.isEmpty():
             curr_call, i = call_stack.pop()
-    
     return output

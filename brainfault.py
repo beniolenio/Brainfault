@@ -36,6 +36,9 @@ class Brainfault:
             return_val += self.code[i]
             i += 1
         return return_val, i
+    
+    def __repr__(self):
+        return self.code
 
 class Subroutine:
     def __init__(self, code):
@@ -59,3 +62,6 @@ class Subroutine:
             return_val += self.code[i]
             i += 1
         return return_val, i
+    
+    def __repr__(self):
+        return self.code
